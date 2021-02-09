@@ -1,0 +1,94 @@
+benm, maayanna
+Benjamin Maman (341145811), Maayann Affriat (329920110)
+EX: 1
+
+FILES:
+Makefile -- a makefile for the library
+osm.cpp -- implementation of thye library 
+README -- this file
+
+REMARKS:
+
+
+ANSWERS:
+
+Assignement1:
+
+We noticed that the program WhatIDo asks for one argument, 
+so we decided to run the strace without any argument and then run it again with one argument 
+(Actually without any argument or more than one arguments it runs the same way) :
+
+--- No argument or more than one 
+
+** fstat(3, {st_mode=S_IFCHR|0600, st_rdev=makedev(136, 1), ...}) = 0
+-> Getting the file's status pointed by the file descriptor 3, succesfuly (0) 
+
+** write(3, "Error. The program should receiv"..., 62Error. The program should receive a single argument. Exiting.
+) = 62
+-> Writes an error message of length 62 to the file pointed by file descriptor 3
+
+** write(3, ": Success\n", 10: Success
+)             = 10
+-> Writes the string ": Success\n" of length 10 
+to the file pointed by the fd3
+
+** close(3)                                = 0
+-> Closes the fd3, so it can be reusable ( With success, 0)
+
+** exit_group(0)                           = ?
+-> Exiting all the threads in the program
+
+
+--- With one argument
+
+** mkdir("Welcome", 0775)                  = 0
+-> Makes a new directory in mode 0775 with the given name "Welcome" with succes (0)
+
+**mkdir("Welcome/To", 0775)               = 0
+-> -> Makes a new directory in mode 0775 with the given name "Welcome/To" with succes (0)
+
+** openat(AT_FDCWD, "Welcome/To/OS2018", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+-> Opens a new file directory named "Welcome/To/OS2018", with the given flags and with the 0666 mode
+The value 3 is the next free registers that the os find to save the adress
+
+** fstat(3, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+-> Getting the file's status pointed by the file descriptor 3, succesfuly (0) 
+
+** write(3, "maayanna\nIf you haven't read the"..., 80) = 80
+-> Writes a string of legth 80 with the login + the string + the given argument. 
+And it's in the register pointed by the fd3. The return value (80) is the value of bytes that were actually registered in the file (actually all the string)
+
+** close(3)                                = 0
+-> Closes the fd3, so it can be reusable ( With success, 0)
+
+** unlink("Welcome/To/OS2018")             = 0
+-> Delete "Welcome/To/OS2018" from te system and the file is deleted
+ (in fact, the file is not open and and no other link to the file exists)
+
+** rmdir("Welcome/To/")                    = 0
+-> Deletes the given directory with sucess (0)
+
+**rmdir("Welcome/")                       = 0
+-> Deletes the given directory with success
+
+**exit_group(0)                           = ?
+-> Exiting all the threads in the program
+
+
+
+
+Assignement2:
+
+Each of the implemented functions (3 functions) measures the time it takes to do diffrents actions:
+- a simple operation (add)
+- call an empty function
+- system call
+
+We decided to implement our functions the same way. 
+In fact, we used a loop unrolling and juste change the content of the loop depending of the action we need to do.
+ ( to measure more effeciently the time)
+
+We calculate the time at the begining and at the end of the iterations and then did end 
+- beg to calculate the total time, 
+to then divise by the ration we used for the loop unrolling (1000)
+Not forgetting to pass the result to nano seconds.

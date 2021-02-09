@@ -1,0 +1,52 @@
+benm, maayanna
+Benjamin Maman (341145811), Maayann Affriat (329920110)
+EX: 2
+
+FILES:
+Makefile -- a makefile for this exercice
+README -- this file
+Thread.h -- header file for the Thread.cpp
+Thread.cpp - Class for a thread
+Schedule.h -- header file for Shcedule.cpp
+Schedule.cpp -- Class for a Scheduler that manages all the threads
+uthreads.cpp -- threads library
+
+REMARKS:
+
+ANSWERS: 
+
+Assignement1:
+We can use user-level threads when working on text editors.
+In fact, if we want to type content and also run a spell-chek in the same time, 
+it is preferable to use user-level thread : one thread for the typing and a second
+one to manage the spell-check.
+The switch between the threads is more efficient than the usage of kernel-level
+threads. (overheard much lower and users don't even notice the switch)
+Moreover, every thread save his stack and the data needed.
+
+Assignement2:
+---Advantages---
+1) It protects from bugs : if one process craches, it doesn't block other processes,
+just like threads
+2) Processes don't share space adress so it protects each process from each other.
+They need the OS to communicate
+
+---Disadvantages---
+1) The Processes need the OS to communicate (threads can communicat directly)
+2) Multi-Process is slower than using threads (switching and terminating them)
+3) Require a kernel trap (more work than with threads)
+
+Assignement3:
+After opening the shotwell programm on CS Computers, we typed "kill pid" on the shell, so an
+interrupt happend from KBD to the OS .
+Then the kill() call was done (with the pid) and the default signal "SIGTERM" terminated the programm.
+
+Assignement4:
+-Real Time : time as the human talks about time, we can mesure it with a clock, as hours, minutes ..
+-Virtual Time : time we used to measure the time it takes to run a process, based on the process we 
+run itself.
+
+In this exercice, we set the timer wth VIRTUAL_TIMER, in order to mesure how many time the process is
+running (using also quantums) but not in REAL_TIMER, based on real life( like a calendar).
+
+

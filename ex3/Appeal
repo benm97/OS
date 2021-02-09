@@ -1,0 +1,5 @@
+1) We had a running time issue, and we solved it by avoiding to use the erase method of a vector 
+(that takes O(n)).
+So to solve this, we reverse the vector in use, and call the pop_back() method.
+
+2) The tests weren't validate our states, we protect them using a mutex to solve the issue.
